@@ -45,9 +45,9 @@ class PCA9685:
             value = pwm[1]
             if invert:
                 value = 4095 - value
-            return
+            return value
         if not 0 <= value <= 4095:
-            return ValueError("Out of range")
+            raise ValueError("Out of range")
         if invert:
             value = 4095 - value
         if value == 0:
