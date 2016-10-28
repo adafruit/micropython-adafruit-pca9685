@@ -26,9 +26,8 @@ _STEPPERS = ((8, 9, 10, 13, 12, 11), (2, 3, 4, 7, 6, 5))
 
 
 class StepperMotor:
-    def __init__(self, pca, revsteps, pwma, ain2, ain1, pwmb, bin2, bin1):
+    def __init__(self, pca, pwma, ain2, ain1, pwmb, bin2, bin1):
         self.pca9685 = pca
-        self.revsteps = revsteps
         self.pwma = pwma
         self.ain2 = ain2
         self.ain1 = ain1
@@ -166,7 +165,6 @@ class Steppers:
         self.pca9685 = pca9685.PCA9685(i2c, address)
         self.pca9685.freq(freq)
 
-    def get_stepper(self, num, revsteps):
+    def get_stepper(self, num):
         pwma, ain2, ain1, pwmb, bin2, bin1 = _STEPPERS[num]
-        return StepperMotor(self.pca9685, revsteps, pwma, ain2, ain1, pwmb,
-                            bin2, bin1)
+        return StepperMotor(self.pca9685, pwma, ain2, ain1, pwmb, bin2, bin1)
